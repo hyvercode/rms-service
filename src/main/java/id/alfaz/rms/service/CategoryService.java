@@ -1,22 +1,26 @@
 package id.alfaz.rms.service;
 
+import id.alfaz.rms.helper.context.ApiContext;
 import id.alfaz.rms.helper.exception.BusinessException;
 import id.alfaz.rms.helper.model.ApiResponse;
 import id.alfaz.rms.helper.model.PageRequest;
 import id.alfaz.rms.helper.service.BaseService;
 import id.alfaz.rms.helper.util.CommonUtil;
 import id.alfaz.rms.helper.util.PageableUtil;
-import id.alfaz.rms.model.entity.ProductCategory;
-import id.alfaz.rms.model.request.productCategory.ProductCategoryRequest;
+import id.alfaz.rms.model.entity.Category;
+import id.alfaz.rms.model.request.category.CategoryRequest;
 import id.alfaz.rms.model.response.productCategory.GetListProductCategoryResponse;
 import id.alfaz.rms.model.response.productCategory.ProductCategoryResponse;
-import id.alfaz.rms.repository.ProductCategoryRepository;
+import id.alfaz.rms.repository.CategoryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.Set;
@@ -26,19 +30,24 @@ import static id.alfaz.rms.helper.util.ConstantResponse.CODE_OK;
 import static id.alfaz.rms.helper.util.ConstantResponse.PROCESS_SUCCESSFULLY;
 
 @Service
-public class ProductCategoryService implements BaseService<PageRequest, GetListProductCategoryResponse> {
-    private ProductCategoryRepository productCategoryRepository;
+public class CategoryService implements BaseService<PageRequest, GetListProductCategoryResponse> {
+    private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
 
-    public ProductCategoryService(ProductCategoryRepository productCategoryRepository) {
-        this.productCategoryRepository = productCategoryRepository;
+    private CategoryRepository categoryRepository;
+    private HttpServletRequest httpServletRequest;
+
+    public CategoryService(CategoryRepository categoryRepository, HttpServletRequest httpServletRequest) {
+        this.categoryRepository = categoryRepository;
+        this.httpServletRequest = httpServletRequest;
     }
 
     @Override
     public GetListProductCategoryResponse execute(PageRequest input) {
-        Page<ProductCategory> page = this.getPageResultByInput(input);
-        Set<ProductCategoryResponse> categoryResponses = page.getContent().stream().map(productCategory -> {
+
+        Page<Category> page = this.getPageResultByInput(input);
+        Set<ProductCategoryResponse> categoryResponses = page.getContent().stream().map(category -> {
             ProductCategoryResponse response = new ProductCategoryResponse();
-            BeanUtils.copyProperties(productCategory,response);
+            BeanUtils.copyProperties(category,response);
             return response;
         }).collect(Collectors.toSet());
 
@@ -48,36 +57,37 @@ public class ProductCategoryService implements BaseService<PageRequest, GetListP
                 .build();
     }
 
-    private Page<ProductCategory> getPageResultByInput(PageRequest pageRequest){
+    private Page<Category> getPageResultByInput(PageRequest pageRequest){
         String sortBy = pageRequest.getSortBy()!=null && !pageRequest.getSortBy().isEmpty()? pageRequest.getSortBy() : "categoryName";
         Pageable pageable =  PageableUtil.createPageRequest(pageRequest,pageRequest.getPageSize(),pageRequest.getPageNumber(),
                 sortBy,pageRequest.getSortType());
-        Page<ProductCategory> page = null;
+        Page<Category> page = null;
         if(pageRequest.getSearchBy() !=null && pageRequest.getSortBy().equals("categoryId")) {
-            page = productCategoryRepository.findByCategoryIdAndOutletIdAndActive(pageRequest.getSearchBy(),"root", "Y", pageable);
+            page = categoryRepository.findByCategoryIdAndOutletIdAndActive(pageRequest.getSearchBy(),httpServletRequest.getHeader(ApiContext.outletId), "Y", pageable);
         }else if(pageRequest.getSearchBy() !=null && pageRequest.getSortBy().equals("categoryName")){
-            page = productCategoryRepository.findByCategoryNameIsContainingAndOutletIdAndActive(pageRequest.getSearchBy(),"root", "Y", pageable);
+            page = categoryRepository.findByCategoryNameIsContainingAndOutletIdAndActive(pageRequest.getSearchBy(),httpServletRequest.getHeader(ApiContext.outletId), "Y", pageable);
         }else if(pageRequest.getSearchBy() !=null && pageRequest.getSortBy().equals("groupId")){
-            page = productCategoryRepository.findByGroupIdAndOutletIdAndActive(pageRequest.getSearchBy(),"root", "Y", pageable);
+            page = categoryRepository.findByGroupIdAndOutletIdAndActive(pageRequest.getSearchBy(),httpServletRequest.getHeader(ApiContext.outletId), "Y", pageable);
         }else if(pageRequest.getSearchBy() !=null && pageRequest.getSortBy().equals("active")){
-            page = productCategoryRepository.findByOutletIdAndActive(pageRequest.getSearchBy(),"root", pageable);
+            page = categoryRepository.findByOutletIdAndActive(pageRequest.getSearchBy(),httpServletRequest.getHeader(ApiContext.outletId), pageable);
         }else{
-            page = productCategoryRepository.findByOutletIdAndActive("root","Y",pageable);
+            page = categoryRepository.findByOutletIdAndActive(httpServletRequest.getHeader(ApiContext.outletId),"Y",pageable);
         }
         return page;
     }
 
-    public ApiResponse add(ProductCategoryRequest request){
-        ProductCategory productCategory = ProductCategory.builder()
+    public ApiResponse add(CategoryRequest request){
+        Category category = Category.builder()
                 .categoryId(CommonUtil.generateUUIDString())
                 .categoryName(request.getCategoryName())
                 .groupId(request.getGroupId())
                 .outletId(request.getOutletId())
                 .active(request.getActive())
+                .remark(request.getRemark())
                 .build();
-        productCategory.setCreatedBy("system");
-        productCategory.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        productCategoryRepository.save(productCategory);
+        category.setCreatedBy(httpServletRequest.getHeader(ApiContext.employeeId));
+        category.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        categoryRepository.save(category);
 
         return ApiResponse.builder()
                 .httpStatus(HttpStatus.OK)
@@ -86,20 +96,21 @@ public class ProductCategoryService implements BaseService<PageRequest, GetListP
                 .build();
     }
 
-    public ApiResponse update(String categoryId,ProductCategoryRequest request){
-        Optional<ProductCategory> optional = productCategoryRepository.findById(categoryId);
+    public ApiResponse update(String categoryId, CategoryRequest request){
+        Optional<Category> optional = categoryRepository.findById(categoryId);
         if(!optional.isPresent()){
             throw new BusinessException(HttpStatus.CONFLICT,"30020","Category ID Not Found");
         }
 
-        ProductCategory productCategory = optional.get();
-        productCategory.setCategoryName(request.getCategoryName());
-        productCategory.setGroupId(request.getGroupId());
-        productCategory.setOutletId(request.getOutletId());
-        productCategory.setActive(request.getActive());
-        productCategory.setUpdatedBy("system");
-        productCategory.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        productCategoryRepository.save(productCategory);
+        Category category = optional.get();
+        category.setCategoryName(request.getCategoryName());
+        category.setGroupId(request.getGroupId());
+        category.setOutletId(request.getOutletId());
+        category.setActive(request.getActive());
+        category.setRemark(request.getRemark());
+        category.setUpdatedBy(httpServletRequest.getHeader(ApiContext.employeeId));
+        category.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        categoryRepository.save(category);
 
         return ApiResponse.builder()
                 .httpStatus(HttpStatus.OK)
@@ -109,14 +120,14 @@ public class ProductCategoryService implements BaseService<PageRequest, GetListP
     }
 
     public ProductCategoryResponse detail(String categoryId){
-        Optional<ProductCategory> optional = productCategoryRepository.findById(categoryId);
+        Optional<Category> optional = categoryRepository.findById(categoryId);
         if(!optional.isPresent()){
             throw new BusinessException(HttpStatus.CONFLICT,"30020","Category ID Not Found");
         }
 
-        ProductCategory productCategory = optional.get();
+        Category category = optional.get();
         ProductCategoryResponse response = new ProductCategoryResponse();
-        BeanUtils.copyProperties(productCategory,response);
+        BeanUtils.copyProperties(category,response);
 
         return response;
     }

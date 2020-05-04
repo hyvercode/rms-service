@@ -1,4 +1,4 @@
-package id.alfaz.rms.model.request.productCategory;
+package id.alfaz.rms.model.request.group;
 
 import id.alfaz.rms.helper.base.BaseRequest;
 import lombok.AllArgsConstructor;
@@ -13,13 +13,10 @@ import javax.validation.constraints.Size;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductCategoryRequest extends BaseRequest {
+public class GroupRequest extends BaseRequest {
     @NotEmpty
     @Size(max = 60)
-    private String categoryName;
-    @NotEmpty
-    @Size(max = 36)
-    private String groupId;
+    private String groupName;
     @NotEmpty
     @Size(max = 36)
     private String outletId;
