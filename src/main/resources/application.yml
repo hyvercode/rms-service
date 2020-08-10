@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName:
-    url: jdbc:postgresql://localhost:5432/rmsdb
-    username: rms
-    password: rms
+    url: jdbc:postgresql://ec2-54-88-130-244.compute-1.amazonaws.com:5432/dtrkilp0s149h
+    username: jfnlzyumoomvtj
+    password: 739520e1c6e61e3dca6eee5cb0a1a632b61a1c5f89c241c6a4f6347449f91f63
   jpa:
     show-sql: true
     hibernate:
