@@ -2,46 +2,36 @@ package id.alfaz.rms.helper.exception;
 
 import org.springframework.http.HttpStatus;
 
-import java.util.Map;
+public class BusinessException extends BaseException{
+    private HttpStatus httpStatus;
+    private String errorCode;
+    private String errorMessage;
 
-public class BusinessException extends BaseException {
-    public BusinessException(String errorCode, String errorDesc, String errorMessage) {
-        super(HttpStatus.CONFLICT, errorCode, "", errorDesc, errorMessage);
+    public BusinessException(HttpStatus httpStatus, String errorCode, String errorMessage) {
+        super(httpStatus,errorCode,errorMessage);
     }
 
-    public BusinessException(HttpStatus httpStatus, String errorCode, String errorDesc, String errorMessage) {
-        super(httpStatus, errorCode, "", errorDesc, errorMessage);
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
 
-    public BusinessException(String errorCode) {
-        super(HttpStatus.CONFLICT, errorCode, "");
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
     }
 
-    public BusinessException(HttpStatus httpStatus, String errorCode) {
-        super(httpStatus, errorCode, "");
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public BusinessException(String errorCode, Map<String, String> maps) {
-        super(HttpStatus.CONFLICT, errorCode, "", maps);
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public BusinessException(HttpStatus httpStatus, String errorCode, Map<String, String> maps) {
-        super(httpStatus, errorCode, "", maps);
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public BusinessException(String errorCode, String rootCause) {
-        super(HttpStatus.CONFLICT, errorCode, rootCause);
-    }
-
-    public BusinessException(HttpStatus httpStatus, String errorCode, String rootCause) {
-        super(httpStatus, errorCode, rootCause);
-    }
-
-    public BusinessException(String errorCode, String rootCause, Map<String, String> maps) {
-        super(HttpStatus.CONFLICT, errorCode, rootCause, maps);
-    }
-
-    public BusinessException(HttpStatus httpStatus, String errorCode, String rootCause, Map<String, String> maps) {
-        super(httpStatus, errorCode, rootCause, maps);
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }
