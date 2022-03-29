@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driverClassName:
+    url: jdbc:postgresql://localhost:5432/rmsdb
+    username: rms
+    password: rms
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  flyway:
+    enabled: true
+    check-location: true
+    locations: classpath:/db/migration
+
+server:
+  port: 8888
+  servlet:
+    context-path: /rms-service
+  error:
+    include-stacktrace: never
+    include-path: never
+
+#devtool
+devtools:
+  livereload:
+    enabled: true
+  add-properties: true
+
+#swgger
+swagger:
+  enabled: true
+
+#jwt
+jwt:
+  secret: alfazidrms
+
+  #api-integration
+rms:
