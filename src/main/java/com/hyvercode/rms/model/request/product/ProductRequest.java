@@ -72,5 +72,5 @@ public class ProductRequest extends BaseRequest {
     @NotNull
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

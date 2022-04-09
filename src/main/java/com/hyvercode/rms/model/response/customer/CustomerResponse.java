@@ -33,5 +33,5 @@ public class CustomerResponse extends BaseResponse {
     private String idCardNumber;
     private String image;
     private String outletId;
-    private String active;
+    private Boolean active;
 }

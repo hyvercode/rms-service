@@ -28,7 +28,7 @@ CREATE TABLE employee (
    insurance_number VARCHAR(30) NULL,
    image VARCHAR(1280) NULL,
    outlet_id VARCHAR(36) NOT NULL,
-   active VARCHAR(1) NOT NULL,
+    active BOOLEAN DEFAULT true,
    created_by VARCHAR(36) NULL,
    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    updated_by VARCHAR(36) NULL,

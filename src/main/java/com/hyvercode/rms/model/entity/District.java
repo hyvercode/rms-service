@@ -28,5 +28,5 @@ public class District extends BaseEntity {
     @Column(name = "province_code")
     private String provinceCode;
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

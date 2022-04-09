@@ -15,5 +15,5 @@ public class ProductGroupResponse extends BaseResponse {
     private String groupName;
     private String outletId;
     private String remark;
-    private String active;
+    private Boolean active;
 }

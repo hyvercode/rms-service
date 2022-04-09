@@ -4,7 +4,7 @@ CREATE TABLE user_login (
       password VARCHAR(255) NULL,
       outlet_id VARCHAR(36) NOT NULL,
       employee_id VARCHAR(36) NOT NULL,
-      active VARCHAR(1) NULL,
+      active BOOLEAN DEFAULT true,
       created_by VARCHAR(36) NULL,
       created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
       updated_by VARCHAR(36) NULL,

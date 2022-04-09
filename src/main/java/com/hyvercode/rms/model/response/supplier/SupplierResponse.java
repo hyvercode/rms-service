@@ -33,5 +33,5 @@ public class SupplierResponse extends BaseResponse {
     private String letterOfBusinessPermit;
     private String outletId;
     private String image;
-    private String active;
+    private Boolean active;
 }

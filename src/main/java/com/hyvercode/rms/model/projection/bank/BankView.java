@@ -5,5 +5,5 @@ public interface BankView {
     String getCountryCode();
     String getBankName();
     String getBankImageLink();
-    String getActive();
+    Boolean getActive();
 }

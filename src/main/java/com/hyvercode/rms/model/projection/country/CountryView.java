@@ -7,5 +7,5 @@ public interface CountryView {
     String getCountryId();
     String getCountryCode();
     String getCountryName();
-    String getActive();
+    Boolean getActive();
 }

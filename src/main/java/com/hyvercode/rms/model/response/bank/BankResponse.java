@@ -15,5 +15,5 @@ public class BankResponse {
     private String countryCode;
     private String bankName;
     private String bankImageLink;
-    private String active;
+    private Boolean active;
 }

@@ -16,5 +16,5 @@ public class BrandResponse extends BaseResponse {
     private String brandName;
     private String outletId;
     private String remark;
-    private String active;
+    private Boolean active;
 }

@@ -64,5 +64,5 @@ public class Branch extends BaseEntity {
     @Column(name = "image",length = 1280,nullable = true)
     private String image;
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

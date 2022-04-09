@@ -42,5 +42,5 @@ public class EmployeeResponse extends BaseResponse {
     private String insuranceNumber;
     private String image;
     private String outletId;
-    private String active;
+    private Boolean active;
 }

@@ -21,7 +21,7 @@ CREATE TABLE supplier (
    letter_of_business_permit VARCHAR(30) NULL,
    outlet_id VARCHAR(36) NOT NULL,
    image VARCHAR(1280) NULL,
-   active VARCHAR(1) NOT NULL,
+    active BOOLEAN DEFAULT true,
    created_by VARCHAR(36) NULL,
    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    updated_by VARCHAR(36) NULL,

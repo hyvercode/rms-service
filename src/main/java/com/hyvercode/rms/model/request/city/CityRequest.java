@@ -25,5 +25,5 @@ public class CityRequest extends BaseRequest {
     private String countryCode;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

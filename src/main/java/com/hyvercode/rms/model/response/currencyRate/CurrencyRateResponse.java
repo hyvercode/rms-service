@@ -18,5 +18,5 @@ public class CurrencyRateResponse extends BaseResponse {
     private Timestamp dateRate;
     private String currencyId;
     private BigDecimal currencyRate;
-    private String active;
+    private Boolean active;
 }

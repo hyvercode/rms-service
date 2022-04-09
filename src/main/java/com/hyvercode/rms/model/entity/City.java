@@ -28,5 +28,5 @@ public class City extends BaseEntity {
     @Column(name = "country_code",length = 3,nullable = false)
     private String countryCode;
     @Column(name = "active",length = 60,nullable = false)
-    private String active;
+    private Boolean active;
 }

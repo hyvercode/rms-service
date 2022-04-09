@@ -21,7 +21,7 @@ public class Swagger2Config {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("id.alfaz.rms.controller"))
+                        .basePackage("com.hyvercode.rms.controller"))
                 .paths(PathSelectors.regex("/.*"))
                 .build()
                 .securityContexts(Arrays.asList(securityContext()))
@@ -32,7 +32,7 @@ public class Swagger2Config {
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring Boot REST API")
                 .description("Retail Management System REST API")
-                .contact(new Contact("irwan", "www.alfaz.id", "alfaztechnology@gmail.com"))
+                .contact(new Contact("mih", "www.hyvercode.com", "hyvercode@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.0.0")

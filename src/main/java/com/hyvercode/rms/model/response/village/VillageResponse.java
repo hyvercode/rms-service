@@ -15,5 +15,5 @@ public class VillageResponse {
     private Integer postcode;
     private String villageName;
     private String subDistrictId;
-    private String active;
+    private Boolean active;
 }

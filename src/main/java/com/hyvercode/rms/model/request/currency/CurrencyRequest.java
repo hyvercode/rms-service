@@ -26,5 +26,5 @@ public class CurrencyRequest extends BaseRequest {
     private String currencySymbol;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

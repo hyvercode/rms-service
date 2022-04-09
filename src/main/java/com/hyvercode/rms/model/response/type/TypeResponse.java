@@ -14,5 +14,5 @@ public class TypeResponse extends BaseResponse {
     private String typeName;
     private String outletId;
     private String remark;
-    private String active;
+    private Boolean active;
 }

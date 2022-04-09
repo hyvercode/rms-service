@@ -31,5 +31,5 @@ public class Currency extends BaseEntity {
     private String currencySymbol;
     @Size(max = 1)
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

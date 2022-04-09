@@ -29,5 +29,5 @@ public class UserRequest extends BaseRequest {
     private String employeeId;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

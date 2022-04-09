@@ -34,5 +34,5 @@ public class CustomerRequest extends BaseRequest {
     private String idCardNumber;
     private String image;
     private String outletId;
-    private String active;
+    private Boolean active;
 }

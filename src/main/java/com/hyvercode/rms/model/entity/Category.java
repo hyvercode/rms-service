@@ -30,5 +30,5 @@ public class Category extends BaseEntity {
     @Column(name = "remark",length = 120,nullable = false)
     private String remark;
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

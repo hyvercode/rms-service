@@ -15,5 +15,5 @@ public class InsuranceResponse extends BaseResponse {
     private String insuranceName;
     private String outletId;
     private String remark;
-    private String active;
+    private Boolean active;
 }

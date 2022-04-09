@@ -34,5 +34,5 @@ public class ProductResponse extends BaseResponse {
     private String image;
     private Integer initialStock;
     private String remark;
-    private String active;
+    private Boolean active;
 }

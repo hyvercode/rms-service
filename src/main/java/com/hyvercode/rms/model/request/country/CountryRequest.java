@@ -24,5 +24,5 @@ public class CountryRequest extends BaseRequest {
     private String countryName;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

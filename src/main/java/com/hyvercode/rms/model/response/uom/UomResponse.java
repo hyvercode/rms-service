@@ -16,5 +16,5 @@ public class UomResponse extends BaseResponse {
     private String uomName;
     private String outletId;
     private String remark;
-    private String active;
+    private Boolean active;
 }

@@ -15,5 +15,5 @@ public class CurrencyResponse extends BaseResponse {
     private String currencyId;
     private String currencyName;
     private String currencySymbol;
-    private String active;
+    private Boolean active;
 }

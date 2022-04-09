@@ -3,7 +3,7 @@ CREATE TABLE bank (
       country_code VARCHAR(3) NOT NULL,
       bank_name VARCHAR(30) NOT NULL,
       bank_image_link VARCHAR(2048) NULL,
-      active VARCHAR(1) NOT NULL,
+      active BOOLEAN DEFAULT true,
       created_by VARCHAR(36) NULL,
       created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
       updated_by VARCHAR(36) NULL,

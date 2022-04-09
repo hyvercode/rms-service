@@ -28,5 +28,5 @@ public class CategoryRequest extends BaseRequest {
     private String remark;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

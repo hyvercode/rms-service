@@ -63,5 +63,5 @@ public class Product extends BaseEntity {
     @Column(name = "remark",length = 255,nullable = true)
     private String remark;
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

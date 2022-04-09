@@ -32,5 +32,5 @@ public class OutletResponse extends BaseResponse {
     private String taxRegistrationNumber;
     private String letterOfBusinessPermit;
     private String image;
-    private String active;
+    private Boolean active;
 }

@@ -25,5 +25,5 @@ public class SubDistrictRequest extends BaseRequest {
     private String districtId;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

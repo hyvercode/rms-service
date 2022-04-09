@@ -15,5 +15,5 @@ public class ProvinceResponse extends BaseResponse {
     private String provinceCode;
     private String countryCode;
     private String provinceName;
-    private String active;
+    private Boolean active;
 }

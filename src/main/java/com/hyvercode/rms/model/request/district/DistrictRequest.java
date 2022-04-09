@@ -25,5 +25,5 @@ public class DistrictRequest extends BaseRequest {
     private String provinceCode;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

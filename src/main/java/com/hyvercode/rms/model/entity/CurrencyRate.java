@@ -30,5 +30,5 @@ public class CurrencyRate extends BaseEntity {
     @Column(name = "currencyRate",nullable = false)
     private BigDecimal currencyRate;
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

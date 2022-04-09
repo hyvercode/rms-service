@@ -28,5 +28,5 @@ public class BankRequest extends BaseRequest {
 
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

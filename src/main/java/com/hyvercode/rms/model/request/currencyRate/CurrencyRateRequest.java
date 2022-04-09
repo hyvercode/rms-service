@@ -28,5 +28,5 @@ public class CurrencyRateRequest extends BaseRequest {
     @NotEmpty
     @Size(max = 1)
     @ApiModelProperty(notes = "Active")
-    private String active;
+    private Boolean active;
 }

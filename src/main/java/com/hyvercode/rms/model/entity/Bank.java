@@ -37,5 +37,5 @@ public class Bank extends BaseEntity {
 
     @Column(name = "active")
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

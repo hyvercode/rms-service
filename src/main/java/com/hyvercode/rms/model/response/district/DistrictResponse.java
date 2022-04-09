@@ -15,5 +15,5 @@ public class DistrictResponse extends BaseResponse {
     private String districtCode;
     private String districtName;
     private String provinceCode;
-    private String active;
+    private Boolean active;
 }

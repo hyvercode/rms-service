@@ -28,5 +28,5 @@ public class SubDistrict extends BaseEntity {
     @Column(name = "districtId")
     private String districtId;
     @Column(name = "active")
-    private String active;
+    private Boolean active;
 }

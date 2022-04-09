@@ -26,5 +26,5 @@ public class ProvinceRequest extends BaseRequest {
     private String provinceName;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

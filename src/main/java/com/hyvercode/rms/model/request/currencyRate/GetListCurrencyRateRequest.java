@@ -27,5 +27,5 @@ public class GetListCurrencyRateRequest extends BasePaginationRequest {
     private BigDecimal currencyRate;
     @NotNull
     @ApiModelProperty(notes = "Active")
-    private String active;
+    private Boolean active;
 }

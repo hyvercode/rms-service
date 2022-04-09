@@ -24,5 +24,5 @@ public class VillageRequest extends BaseRequest {
     private String subDistrictId;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }

@@ -79,5 +79,5 @@ public class Employee extends BaseEntity {
     @Column(name = "outlet_id",length = 36,nullable = false)
     private String outletId;
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

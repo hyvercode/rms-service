@@ -32,5 +32,5 @@ public class Village extends BaseEntity {
     private String subDistrictId;
 
     @Column(name = "active",length = 1,nullable = false)
-    private String active;
+    private Boolean active;
 }

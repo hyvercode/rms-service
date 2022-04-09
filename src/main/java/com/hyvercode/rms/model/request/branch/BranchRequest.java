@@ -67,5 +67,5 @@ public class BranchRequest extends BaseRequest {
     private String image;
     @NotEmpty
     @Size(max = 1)
-    private String active;
+    private Boolean active;
 }
