@@ -8,10 +8,10 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>id.alfaz.rms</groupId>
-	<artifactId>global-service</artifactId>
+	<groupId>com.hyvercode.rms</groupId>
+	<artifactId>rms-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>global-service</name>
+	<name>rms-service</name>
 	<description>rsm core </description>
 
 	<properties>
