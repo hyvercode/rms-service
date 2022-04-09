@@ -20,7 +20,7 @@ CREATE TABLE outlet (
    tax_registration_number VARCHAR(30) NULL,
    letter_of_business_permit VARCHAR(30) NULL,
    image VARCHAR(1280) NULL,
-   a active BOOLEAN DEFAULT true,
+   active BOOLEAN DEFAULT true,
    created_by VARCHAR(36) NULL,
    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
    updated_by VARCHAR(36) NULL,
