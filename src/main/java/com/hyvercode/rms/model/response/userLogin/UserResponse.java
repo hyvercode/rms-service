@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UserResponse extends BaseResponse {
-    private String userId;
+    private String loginId;
     private String username;
 }

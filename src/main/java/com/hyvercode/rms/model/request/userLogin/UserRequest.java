@@ -19,7 +19,7 @@ public class UserRequest extends BaseRequest {
     @Size(max = 30)
     private String username;
     @NotEmpty
-    @Size(min = 8,max = 30)
+    @Size(min = 8, max = 30)
     private String password;
     @NotEmpty
     @Size(max = 36)
@@ -27,6 +27,17 @@ public class UserRequest extends BaseRequest {
     @NotEmpty
     @Size(max = 36)
     private String employeeId;
+    @NotEmpty
+    @Size(max = 60)
+    private String name;
+    @NotEmpty
+    @Size(max = 40)
+    private String email;
+    @NotEmpty
+    @Size(max = 15)
+    private String phoneNumber;
+    @Size(max = 1280)
+    private String avatar;
     @NotEmpty
     @Size(max = 1)
     private Boolean active;

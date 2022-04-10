@@ -32,11 +32,23 @@ public class UserLogin extends BaseEntity {
     @JsonIgnore
     private String password;
 
+    @Column(name = "name", length = 60, nullable = false)
+    private String name;
+
+    @Column(name = "email", length = 40, nullable = false)
+    private String email;
+
+    @Column(name = "phone_number", length = 15, nullable = false)
+    private String phoneNumber;
+
     @Column(name = "outlet_id", length = 36)
     private String outletId;
 
     @Column(name = "employee_id", length = 36)
     private String employeeId;
+
+    @Column(name = "avatar",length = 1280,nullable = true)
+    private String avatar;
 
     @Column(name = "active", length = 1, nullable = false)
     private Boolean active;

@@ -13,7 +13,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LoginResponse extends BaseResponse {
 	private static final long serialVersionUID = -8091879091924046844L;
+	private String loginId;
 	private String accessToken;
 	private String outletId;
 	private String employeeId;
+	private String name;
+	private String phoneNumber;
+	private String email;
+	private String avatar;
 }
